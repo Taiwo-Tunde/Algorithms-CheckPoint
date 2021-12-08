@@ -1,23 +1,28 @@
-function countSentence(strings) {
-  let result = {
-    sentenceLength: 0,
-    wordsCount: 1,
-    vowelCount: 0,
+function sentenceRead(text) {
+  let sentenceLength = 0;
+  let numWords = 1;
+  let vowelCount = 0;
+
+  char = {
+    a: "a",
+    e: "e",
+    i: "i",
+    o: "o",
+    u: "u",
   };
 
-  result.sentenceLength = strings.length;
+  for (i = 0; i < text.length; i++) {
+    sentenceLength = text.length;
 
-  for (let i = 0; i < strings.length; i++) {
-    if (strings[i] == " " || strings[i] == ".") {
-      result.wordsCount += 1;
+    if (char[text[i].toLowerCase()]) {
+      vowelCount += 1;
+    }
+
+    if (text[i] === " ") {
+      numWords += 1;
     }
   }
-
-  let newSentence = Array.from(strings.toLowerCase());
-  result.vowelCount = newSentence.filter((letter) =>
-    "aeiou".includes(letter)
-  ).length;
-  return result;
+  return { sentenceLength, numWords, vowelCount };
 }
 
-console.log(countSentence("I am Working to be better than yesterday"));
+console.log(sentenceRead("Everything will be Alright"));
